@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	import { portfolio } from '$lib/data/portfolio';
 	import { ArrowUpRight } from 'lucide-svelte';
 
@@ -10,6 +11,13 @@
 		setTimeout(() => {
 			copiedEmail = false;
 		}, 2000);
+	}
+
+	function resolveUrl(url: string): string {
+		if (url.startsWith('/')) {
+			return `${base}${url}`;
+		}
+		return url;
 	}
 </script>
 
@@ -59,7 +67,7 @@
 				{#each portfolio.links as link}
 					<span class="text-slate-600">/</span>
 					<a
-						href={link.url}
+						href={resolveUrl(link.url)}
 						target="_blank"
 						rel="noopener noreferrer"
 						class="text-slate-300 hover:text-white transition-colors inline-flex items-center gap-0.5"
@@ -227,7 +235,7 @@
 			<div class="flex items-center gap-3">
 				<a href="mailto:{portfolio.email}" class="hover:text-slate-300 transition-colors">email</a>
 				<span>·</span>
-				<a href="/resume.pdf" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition-colors">resume.pdf</a>
+				<a href="{base}/resume.pdf" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition-colors">resume.pdf</a>
 			</div>
 		</footer>
 

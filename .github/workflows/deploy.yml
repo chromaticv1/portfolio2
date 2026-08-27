@@ -33,10 +33,13 @@ jobs:
         run: bun install
 
       - name: Build static site
-        run: bun run build
-        env:
-          # Automatically configures base path for repository pages
-          BASE_PATH: ${{ github.event.repository.name != '' && !endsWith(github.repository, '.github.io') && format('/{0}', github.event.repository.name) || '' }}
+        run: |
+          if [[ "${{ github.repository }}" == *".github.io" ]]; then
+            export BASE_PATH=""
+          else
+            export BASE_PATH="/${{ github.event.repository.name }}"
+          fi
+          bun run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
