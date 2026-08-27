@@ -69,8 +69,8 @@ export const portfolio: Portfolio = {
 	phone: '+880 1761 432578',
 	email: 'kmuntasirsawad@gmail.com',
 	links: [
-		{ label: 'LinkedIn', url: 'https://linkedin.com/in/khalid-muntasir-sawad', external: true },
-		{ label: 'GitHub', url: 'https://github.com/muntasir-sawad', external: true },
+		{ label: 'LinkedIn', url: 'https://www.linkedin.com/in/khalid-s-2a489412a/', external: true },
+		{ label: 'GitHub', url: 'https://github.com/chromaticv1', external: true },
 		{ label: 'Resume (PDF)', url: '/resume.pdf', external: true }
 	],
 	about:
@@ -86,7 +86,7 @@ export const portfolio: Portfolio = {
 	projects: [
 		{
 			title: 'FlexAutoDock',
-			role: 'Research Assistant',
+			role: 'Backend',
 			period: 'DECEMBER 2024 – PRESENT',
 			bullets: [
 				'Created the backend using FastAPI, Celery, RabbitMQ for a molecular docking platform.',
@@ -94,8 +94,8 @@ export const portfolio: Portfolio = {
 				'Designed web scrapers and analysis tools utilizing Python, R, and Google Looker Studio.'
 			],
 			link: {
-				url: 'https://vegiehat.org',
-				label: 'vegiehat.org'
+				url:'https://doi.org/10.64898/2026.08.11.744098',
+				label: 'Paper link'
 			},
 			technologies: ['FastAPI', 'Celery', 'RabbitMQ', 'Python', 'R', 'Google Looker Studio']
 		},
