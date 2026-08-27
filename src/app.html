@@ -1,11 +1,33 @@
 <!doctype html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en" class="scroll-smooth">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#08090d" />
-		<meta name="color-scheme" content="dark" />
+		<meta name="color-scheme" content="dark light" />
+
+		<!-- Inline script to prevent theme flash (FOUC) -->
+		<script>
+			(function () {
+				try {
+					var theme = localStorage.getItem('theme');
+					var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+					var isDark = theme === 'dark' || ((!theme || theme === 'system') && prefersDark);
+					if (isDark) {
+						document.documentElement.classList.add('dark');
+						document.documentElement.classList.remove('light');
+					} else {
+						document.documentElement.classList.remove('dark');
+						document.documentElement.classList.add('light');
+					}
+					var metaThemeColor = document.querySelector('meta[name="theme-color"]');
+					if (metaThemeColor) {
+						metaThemeColor.setAttribute('content', isDark ? '#08090d' : '#f8f9fb');
+					}
+				} catch (e) {}
+			})();
+		</script>
 		
 		<!-- SEO & Metadata -->
 		<title>Khalid Muntasir Sawad | Statistician & Software Developer</title>
@@ -31,7 +53,7 @@
 
 		%sveltekit.head%
 	</head>
-	<body data-sveltekit-preload-data="hover" class="bg-[#08090d] text-[#c9cdd4] antialiased selection:bg-white/[0.15] selection:text-white min-h-screen overflow-x-hidden font-sans">
+	<body data-sveltekit-preload-data="hover" class="bg-[#f8f9fb] text-slate-800 dark:bg-[#08090d] dark:text-[#c9cdd4] antialiased selection:bg-slate-900 selection:text-white dark:selection:bg-white/[0.15] dark:selection:text-white min-h-screen overflow-x-hidden font-sans">
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>
